@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -19,6 +18,7 @@ function App() {
   //Updating ingredients with user input
   const [userInput, setUserInput] = useState('');
   const [ingredientsList, setIngredientsList] = useState([]);
+  const [recipesList, setRecipesList] = useState([]);
 
   const handleUserText = (event) => {
     setUserInput(event.target.value);
@@ -34,7 +34,6 @@ function App() {
       //reset user input box
       setUserInput('');
 
-      //ingredient list display is updated in html below.
 
     }
 
@@ -42,6 +41,32 @@ function App() {
 
   const removeIngredient = (index) => {
     setIngredientsList(ingredientsList.filter((_, i) => i !== index))
+
+  }
+
+  const APIKey = '23e8c2d18ee31e8f26ba24ef963d1ec1';
+  const myID = 'b12e85f1';
+  const APIurl = 'https://api.edamam.com/search';
+
+  const loadRecipes = async () => {
+    const query = ingredientsList.join(',');
+    const url = `${APIurl}?q=${encodeURIComponent(query)}&app_id=${myID}&app_key=${APIKey}&from=0&to=5`;
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Response not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        setRecipesList(data.hits)
+      })
+      .catch(error => {
+        console.error('Error');
+      });
+
   }
 
 
@@ -68,18 +93,24 @@ function App() {
         <div id="inputs">
           <div id="text-and-go">
             <input type="text" value={userInput} onChange={handleUserText} onKeyDown={handleUserIn}></input>
-            <button id="get-recipes-btn">Go!</button>
+            <button id="get-recipes-btn" onClick={loadRecipes}>Go!</button>
           </div>
           <div>{ingredientsList.map((ingredient, index) =>
             <div key={index} className="ingredient-bubble">
               {ingredient}
-              <button class='remove-ingredient-btn' onClick={() => removeIngredient(index)}>x</button>
+              <button className='remove-ingredient-btn' onClick={() => removeIngredient(index)}>x</button>
             </div>
           )}
           </div>
         </div>
 
-        <div id="display-recipes">
+        <div id="display-recipes">{recipesList.map((recipe, index) =>
+          <div key={index} className="recipe-bubble">
+            <h1 style={{ fontSize: '20px' }}>{recipe.recipe.label} </h1>
+            <img src={recipe.recipe.image} width="60" height="75" />
+            <a href={recipe.recipe.url} />
+          </div>
+        )}
         </div>
 
       </div>
