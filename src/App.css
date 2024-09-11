@@ -32,7 +32,154 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  font-family: sans-serif;
+  background-color: hsl(301, 59%, 53%);
+  text-align: center;
+  padding: 50px;
+}
+
+#heading-section {
+  font-family: Arial;
+  border: 2px solid #73AD21;
+  border-radius: 25px;
+}
+
+#start-section {
+  font-family: Arial;
+  align-items: center;
+  margin-top: 200px;
+}
+
+#add-ingredients-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: normal;
+  align-items: flex-start;
+  font-family: Arial;
+  margin-top: 200px;
+  width: 100%;
+}
+
+#input-section {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+#left-side {
+  display: flex;
+  flex-direction: column;
+}
+
+#ingredient-display {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: .5px;
+}
+
+#recipe-display {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+
+
+
+h1 {
+  font-size: 50px;
+  color: #20cbe1;
+}
+
+#text-content {
+  font-family: cursive;
+  font-size: 30px;
+  color: rgb(255, 255, 255);
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#add-ingredients-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+#rotd-btn {
+  background-color: #008CBA;
+  color: white;
+}
+
+#submit-ingredients-btn {
+  background-color: #4e3bc6;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+
+#ingredient-text-box {
+  text-align: center;
+  width: 200px;
+  padding: 5px;
+}
+
+
+.ingredient-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  color: white;
+  background-color: rgb(38, 179, 225);
+  font-family: Arial, sans;
+  width: fit-content;
+  height: auto;
+  border-radius: 0.5em;
+  border: 2px solid #ccc;
+  margin-top: 10px;
+}
+
+
+.remove-ingredient-btn {
+  font-size: 5%;
+  background-color: #ff4c4c;
+  padding: 2px 2px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+
+
+.recipe-bubble {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  color: white;
+  background-color: rgb(38, 179, 225);
+  font-family: Arial, sans;
+  width: fit-content;
+  height: auto;
+  border-radius: 0.5em;
+  border: 2px solid #ccc;
+  margin-top: 10px;
 }
